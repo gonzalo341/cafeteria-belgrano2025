@@ -61,3 +61,8 @@ a:hover {
 .link:hover {
     text-decoration: underline;
 }
+
+.header-buttons-link {
+    display: flex;
+    align-items: center;
+}
