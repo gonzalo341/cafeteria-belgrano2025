@@ -2,12 +2,62 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+.colores {
+    color: #131410;
+    color: #4c2818;
+    color: #a66a2c;
+    color: #d5aa72;
+    color: #f5f6ed;
+}
+
+body {
+    background-color: #d5aa72;
+    color: #4c2818;
+    font-family: Montserrat;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header, footer {
+    background-color: #4c2818;
+    color: #d5aa72;
+    width: 100%;
+    padding: 20px;
+    margin: 0;
+}
+
 h1 {
     font-family: Montserrat;
     font-weight: 700;
     text-transform: uppercase;
 }
 
-p {
-    line-height: 1.4;
+a {
+    text-decoration: none;
+    color: #d5aa72;
+}
+
+a:hover {
+    color: #d5aa72;
+}
+
+.header-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.link {
+    color: #d5aa72;
+    text-decoration: none;
+    list-style-type: none;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.link:hover {
+    text-decoration: underline;
 }
