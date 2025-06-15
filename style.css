@@ -1,0 +1,13 @@
+/* Fuentes Importadas */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+h1 {
+    font-family: Montserrat;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+p {
+    line-height: 1.4;
+}
