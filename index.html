@@ -39,26 +39,82 @@
 <body>
     <!-- ===== Encabezado del sitio (Header) ===== -->
     <header>
-        <div>
-            <div class="header-link">
-                <a href="http://127.0.0.1:5500/index.html">
-                    <img class="logo" src="img/logo.png" alt="logo de Fran Coffee Makers">
-                </a>
+        <div class="header-logo">
+            <a href="http://127.0.0.1:5500/index.html">
+                <img class="logo" src="img/logo.png" alt="logo de Fran Coffee Makers">
+            </a>
+        </div>
 
-                <div class="header-buttons-div">
+        <div class="header-content">
+            <div>
+                <div class="header-top-bar">
 
                     <!-- Botón para ingresar o crear cuenta -->
-                    <button class="header-button">Ingresa o Crear una Cuenta</button>
+                    <div class="search-bar">
+                        <button class="header-login">Ingresa o Crear una Cuenta</button>
+                    </div>
 
                     <!-- Barra de búsqueda -->
                     <div class="search-bar">
                         <form action="/search" method="GET">
-                            <img class="header-button icon" src="/icon/lupa.svg" alt="Ícono de búsqueda">
-                            <input type="text" name="search-box" placeholder="Buscar productos">
-                            <button type="submit">Buscar</button>
+                            <input class="search-input" type="text" name="search" placeholder="Buscar productos">
+                            <button class=" search-button" type="submit" name="search">
+                                <img class="search-icon" src="/icon/lupa.svg" alt="Ícono de búsqueda">
+                            </button>
                         </form>
                     </div>
                 </div>
+
+                <div class="header-nav-bar">
+
+                    <a href=""></a>
+
+                    <div class="dropdown">
+                        <button class="link, drop-btn">Menú</button>
+
+                        <!-- Menú desplegado -->
+                        <div class="dropdown-content">
+                            <h3>Menú</h3>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="link, drop-btn">Menú</button>
+
+                        <!-- Menú desplegado -->
+                        <div class="dropdown-content">
+                            <h3>Menú</h3>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="link, drop-btn">Menú</button>
+
+                        <!-- Menú desplegado -->
+                        <div class="dropdown-content">
+                            <h3>Menú</h3>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-nav">
+
             </div>
         </div>
     </header>

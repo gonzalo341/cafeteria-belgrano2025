@@ -1,4 +1,4 @@
-/* Fuentes Importadas */
+/* ========== Fuentes Importadas ========== */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -26,14 +26,13 @@ body {
     min-height: 100vh;
 }
 
-header, footer {
+header,
+footer {
     background-color: #4c2818;
     color: #d5aa72;
     width: 100%;
-    padding: 20px;
-    margin: 0;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 0.5fr repeat(2, 1fr);
     grid-template-rows: auto;
 }
 
@@ -52,15 +51,66 @@ a:hover {
     color: #d5aa72;
 }
 
-.logo {
-    grid-column: 1/3;
-    grid-row: 1/3;
-    height: 8vh;
+/* ========== Header ========== */
+
+.header-logo {
+    grid-column: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.icon {
-    height: 25px;
-    margin: 0.4vw;
+.logo {
+    height: 10vh;
+}
+
+.header-content {
+    grid-column: 2/4;
+}
+
+.header-top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 5px 10px;
+}
+
+/* ========== Header: Inicio de sesión ========== */
+
+.header-login {
+    background-color: #d5aa72;
+    color: #4c2818;
+    border: none;
+    border-radius: 15px;
+    box-sizing: content-box;
+    margin: 10px;
+    height: 30px;
+}
+
+/* ========== Header: Barra de busqueda ========== */
+
+.search-bar {
+    margin: 5px 0px;
+    align-content: center;
+}
+
+.search-input {
+    color: #4c2818;
+    margin: 10px;
+    height: 34px;
+    border-radius: 8px;
+}
+
+.search-button {
+    background-color: #4c2818;
+    box-sizing: content-box;
+    border: none;
+}
+
+.search-icon {
+    box-sizing: content-box;
+    padding: 8px;
+    height: 30px;
 }
 
 .header-link {
@@ -86,7 +136,68 @@ a:hover {
     align-items: center;
 }
 
-/* Links a redes sociales*/
+/* ========== Header: Menú desplegable ========== */
+
+.header-nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.drop-btn {
+    background: none;
+    border: none;
+    color: #f5f6ed;
+    cursor: pointer;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f5f6ed;
+    box-shadow: 0 8px 8px rgba(76, 40, 24, 0.2);
+    border-radius: 15px;
+    z-index: 1;
+    width: 200px;
+    top: 100%;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content h3 {
+    padding: 10px;
+    margin: 0;
+    background-color: #d5aa72;
+    color: #4c2818;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #4c2818;
+}
+
+.dropdown-content a:hover {
+    background-color: #f5f6ed;
+}
+
+/* ========== Links a redes sociales ========== */
+
 .social-media {
     min-width: 150px;
     max-width: 15vw;
