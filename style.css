@@ -44,6 +44,10 @@ a:hover {
     color: #d5aa72;
 }
 
+.icon {
+    width: 25px;
+}
+
 .header-link {
     display: flex;
     justify-content: space-between;
