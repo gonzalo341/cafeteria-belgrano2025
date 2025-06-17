@@ -14,7 +14,7 @@
     box-sizing: border-box;
 }
 
-body {
+html, body {
     background-color: #d5aa72;
     color: #4c2818;
     width: 100%;
@@ -24,10 +24,12 @@ body {
     line-height: 1.4;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
 
 header,
