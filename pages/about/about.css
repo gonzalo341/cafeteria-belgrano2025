@@ -318,9 +318,14 @@ section {
 
 /* ========== Footer -- links ========== */
 
+.footer-links {
+    font-size: 1rem;
+    width: 12rem;
+    text-transform: capitalize;
+}
+
 .footer--link-list {
     list-style: none;
-    height: 100%;
 }
 
 /* ========== Responsive ========== */
