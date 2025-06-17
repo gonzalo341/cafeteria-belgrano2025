@@ -156,7 +156,7 @@ h1 {
     flex-direction: row;
     gap: 1rem;
     justify-content: flex-start;
-
+    align-items: center;
 }
 
 .dropdown {
