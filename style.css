@@ -307,7 +307,8 @@ section {
     padding: 0;
 }
 
-.carousel-inner {
+.local-img {
+    height: 20rem;
     object-fit: cover;
 }
 
