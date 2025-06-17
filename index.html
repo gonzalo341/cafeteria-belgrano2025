@@ -50,8 +50,8 @@
                 <div class="header-top-bar">
 
                     <!-- Botón para ingresar o crear cuenta -->
-                    <div class="search-bar">
-                        <button class="header-login">Ingresa o Crear una Cuenta</button>
+                    <div class="login-button">
+                        <a href="pages/register/register.html" class="header-login">Ingresa o Crear una Cuenta</a>
                     </div>
 
                     <!-- Barra de búsqueda -->
@@ -123,60 +123,82 @@
     <main>
 
         <section class="product-carousel">
-            <div id="carouselExample" class="carousel slide">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
+
+                    <!-- Primer slide -->
                     <div class="carousel-item active">
-
-                        <div class="card" style="width: 18rem;">
-                            <img src="img/cafeamericano.jpeg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="d-flex justify-content-center gap-3">
+                            <div class="card" style="width: 18rem;">
+                                <img src="img/cafeamericano.jpeg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Café Americano</h5>
+                                    <p class="card-text">Café filtrado clásico con aroma intenso.</p>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                </div>
+                            </div>
+                            <div class="card" style="width: 18rem;">
+                                <img src="img/cafeleche2.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Café con Leche</h5>
+                                    <p class="card-text">Una mezcla suave y cremosa.</p>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                </div>
+                            </div>
+                            <div class="card" style="width: 18rem;">
+                                <img src="img/frapuccino.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Frappuccino</h5>
+                                    <p class="card-text">Refrescante y perfecto para el verano.</p>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item">
 
-                        <div class="card" style="width: 18rem;">
-                            <img src="img/cafeleche2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <!-- Segundo slide -->
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-center gap-3">
+                            <div class="card" style="width: 18rem;">
+                                <img src="img/porcionbrownie.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Café Americano</h5>
+                                    <p class="card-text">Café filtrado clásico con aroma intenso.</p>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-
-                        <div class="card" style="width: 18rem;">
-                            <img src="img/frapuccino.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk
-                                    of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <div class="card" style="width: 18rem;">
+                                <img src="img/tortarogel.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Café con Leche</h5>
+                                    <p class="card-text">Una mezcla suave y cremosa.</p>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                </div>
+                            </div>
+                            <div class="card" style="width: 18rem;">
+                                <img src="img/frapuccino.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Frappuccino</h5>
+                                    <p class="card-text">Refrescante y perfecto para el verano.</p>
+                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Controles -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span class="visually-hidden">Anterior</span>
                 </button>
+
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
+                    <span class="visually-hidden">Siguiente</span>
                 </button>
-            </div>
             </div>
         </section>
 
@@ -185,8 +207,43 @@
         </section>
 
         <section class="features">
+            <div class="features-div">
+                <div class="features-div--image">
+                    <img src="icon/delivery.svg" alt="Envío a domicilio">
+                </div>
+                <div class="features-div--text">
+                    <h2>Envío a domicilio</h2>
+                </div>
+            </div>
 
+            <div class="features-div">
+                <div class="features-div--image">
+                    <img src="icon/whatsapp.svg" alt="Pedidos por WhatsApp">
+                </div>
+                <div class="features-div--text">
+                    <h2>Pedidos por WhatsApp</h2>
+                </div>
+            </div>
+
+            <div class="features-div">
+                <div class="features-div--image">
+                    <img src="icon/wifi.svg" alt="Wi-Fi gratuito">
+                </div>
+                <div class="features-div--text">
+                    <h2>Espacio con Wi-Fi gratuito</h2>
+                </div>
+            </div>
+
+            <div class="features-div">
+                <div class="features-div--image">
+                    <img src="icon/promo.svg" alt="Promociones diarias">
+                </div>
+                <div class="features-div--text">
+                    <h2>Promociones todos los días</h2>
+                </div>
+            </div>
         </section>
+
 
     </main>
 
@@ -194,7 +251,7 @@
     <footer>
         <section class="footer-content">
             <div class="social-media">
-                
+
                 <div class="social-media-div">
                     <h4>Mantente Conectado</h4>
                 </div>
