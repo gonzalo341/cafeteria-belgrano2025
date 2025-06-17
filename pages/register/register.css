@@ -10,6 +10,10 @@
     color: #f5f6ed;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #d5aa72;
     color: #4c2818;
@@ -32,12 +36,276 @@ footer {
     color: #d5aa72;
     width: 100%;
     display: grid;
-    grid-template-columns: 0.5fr repeat(2, 1fr);
+    grid-template-columns: 0.15fr 1fr;
     grid-template-rows: auto;
 }
 
 h1 {
     font-family: Montserrat;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 900;
     text-transform: uppercase;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.link {
+    color: #d5aa72;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    background-color: #4c2818;
+    color: #f5f6ed;
+    box-shadow: 0 8px 8px rgba(76, 40, 24, 0.2);
+}
+
+/* ========== Header ========== */
+
+.header-logo {
+    grid-column: 1;
+    align-content: center;
+    text-align: center;
+    margin: 1rem 2rem;
+}
+
+.logo {
+    height: 7rem;
+}
+
+.header-content {
+    grid-column: 2;
+}
+
+.header-top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/* ========== Header: Inicio de sesión ========== */
+
+.header-login {
+    align-content: center;
+    padding: 1rem;
+}
+
+.login-button {
+    background-color: #d5aa72;
+    color: #4c2818;
+    border: 0;
+    border-radius: 15px;
+    padding: 0.4rem 1rem;
+    height: 2rem;
+}
+
+.login-button:hover {
+    color: #4c2818;
+}
+
+.login-link, .login-link:hover {
+    color: #4c2818;
+    font-weight: 700;
+}
+
+.login-link {
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.header-login:hover, .search-button:hover {
+    transform: scale(1.1);
+}
+
+/* ========== Header: Barra de busqueda ========== */
+
+.search-bar {
+    align-content: center;
+    padding: 1rem;
+}
+
+.search-input {
+    color: #4c2818;
+    opacity: 75%;
+    margin: 10px;
+    height: 2.2rem;
+    border-radius: 8px;
+}
+
+.search-input:hover {
+    opacity: 100%;
+}
+
+.search-button {
+    background-color: #4c2818;
+    box-sizing: content-box;
+    border: none;
+}
+
+.search-icon {
+    height: 2rem;
+}
+
+/* ========== Header: Menú desplegable ========== */
+
+.header-nav-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: flex-start;
+
+}
+
+.dropdown {
+    position: relative;
+    z-index: 10;
+}
+
+.drop-btn {
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: #f5f6ed;
+    cursor: pointer;
+    padding: 1rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f5f6ed;
+    box-shadow: 0 8px 8px rgba(76, 40, 24, 0.2);
+    border-radius: 15px;
+    z-index: 100;
+    width: 200px;
+    top: 100%;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content h3 {
+    padding: 10px;
+    margin: 0;
+    background-color: #d5aa72;
+    color: #4c2818;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #4c2818;
+}
+
+.dropdown-content a:hover {
+    background-color: #f5f6ed;
+}
+
+/* ========== section ========== */
+
+section {
+    width: 60%;
+    margin: 2rem auto;
+}
+
+/* ========== formulario ========== */
+
+.formulario {
+    background-color: #f5f6ed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin: 2rem auto;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.formulario .form-control,
+.formulario .button {
+    width: 100%;
+}
+
+/* ========== Footer ========== */
+
+.footer-content {
+    grid-column: 1/4;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: auto;
+    padding: 1rem 0;
+}
+
+/* ========== Footer -- Redes sociales ========== */
+
+.social-media {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+.social-media-div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 20rem;
+    height: 100%;
+}
+
+.social-media-logo {
+    box-sizing: content-box;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
+}
+
+.social-media-logo:hover {
+    transform: scale(1.3);
+}
+
+/* ========== Footer -- links ========== */
+
+.footer--link-list {
+    list-style: none;
+    height: 100%;
+}
+
+@media (max-width: 1200px) {
+    section {
+        width: 90%;
+    }
+
+@media (max-width: 1400px) {
+    section {
+        width: 90%;
+    }
 }

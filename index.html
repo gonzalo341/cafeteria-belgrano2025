@@ -40,7 +40,7 @@
     <!-- ===== Encabezado del sitio (Header) ===== -->
     <header>
         <div class="header-logo">
-            <a href="http://127.0.0.1:5500/index.html">
+            <a href="index.html">
                 <img class="logo" src="img/logo.png" alt="logo de Fran Coffee Makers">
             </a>
         </div>
@@ -50,8 +50,10 @@
                 <div class="header-top-bar">
 
                     <!-- Botón para ingresar o crear cuenta -->
-                    <div class="login-button">
-                        <a href="pages/register/register.html" class="header-login">Ingresa o Crear una Cuenta</a>
+                    <div class="header-login">
+                        <button class="login-button">
+                            <a href="pages/register/register.html" class="login-link">Ingresa o Crear una Cuenta</a>
+                        </button>
                     </div>
 
                     <!-- Barra de búsqueda -->
@@ -67,7 +69,7 @@
 
                 <div class="header-nav-bar">
 
-                    <a class="link. drop-btn" href="pages/about/about.html">Sobre nosotros</a>
+                    <a class="drop-btn" href="pages/about/about.html">Sobre nosotros</a>
 
                     <div class="dropdown">
                         <button class="link, drop-btn">Menú</button>
@@ -134,7 +136,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Café Americano</h5>
                                     <p class="card-text">Café filtrado clásico con aroma intenso.</p>
-                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                    <a href="#" class="btn">Ver más</a>
                                 </div>
                             </div>
                             <div class="card" style="width: 18rem;">
@@ -142,7 +144,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Café con Leche</h5>
                                     <p class="card-text">Una mezcla suave y cremosa.</p>
-                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                    <a href="#" class="btn">Ver más</a>
                                 </div>
                             </div>
                             <div class="card" style="width: 18rem;">
@@ -150,7 +152,15 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Frappuccino</h5>
                                     <p class="card-text">Refrescante y perfecto para el verano.</p>
-                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                    <a href="#" class="btn">Ver más</a>
+                                </div>
+                            </div>
+                            <div class="card" style="width: 18rem;">
+                                <img src="img/frapuccino.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Frappuccino</h5>
+                                    <p class="card-text">Refrescante y perfecto para el verano.</p>
+                                    <a href="#" class="btn">Ver más</a>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +174,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Café Americano</h5>
                                     <p class="card-text">Café filtrado clásico con aroma intenso.</p>
-                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                    <a href="#" class="btn">Ver más</a>
                                 </div>
                             </div>
                             <div class="card" style="width: 18rem;">
@@ -172,7 +182,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Café con Leche</h5>
                                     <p class="card-text">Una mezcla suave y cremosa.</p>
-                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                    <a href="#" class="btn">Ver más</a>
                                 </div>
                             </div>
                             <div class="card" style="width: 18rem;">
@@ -180,7 +190,15 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Frappuccino</h5>
                                     <p class="card-text">Refrescante y perfecto para el verano.</p>
-                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                    <a href="#" class="btn">Ver más</a>
+                                </div>
+                            </div>
+                            <div class="card" style="width: 18rem;">
+                                <img src="img/frapuccino.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Frappuccino</h5>
+                                    <p class="card-text">Refrescante y perfecto para el verano.</p>
+                                    <a href="#" class="btn">Ver más</a>
                                 </div>
                             </div>
                         </div>
@@ -203,43 +221,96 @@
         </section>
 
         <section class="offers">
+            <div class="offers--top-container">
+                <div class="offers--top-left-div">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ea veniam est modi eum!
+                        Nulla minus, eos sunt laborum quo nobis quas accusamus quibusdam maxime ut ad perspiciatis
+                        mollitia quam.
+                    </p>
+                    <ul>
+                        <li>opción</li>
+                        <li>opción</li>
+                        <li>opción</li>
+                    </ul>
+                </div>
 
+                <div class="offers--top-right-div">
+
+                </div>
+            </div>
+
+            <div class="offers--down-container">
+                <div class="offers--down-left-div">
+                    <h3>Titulo</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint aliquam, voluptatum iusto
+                        molestias quis dolor voluptate, numquam suscipit et eum sapiente pariatur ipsam qui cum cumque
+                        tempora esse. Repudiandae!
+                    </p>
+                </div>
+
+                <div class="offers--down-center-div">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="img/logo.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/logo.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="img/logo.png" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offers--down-right-div">
+                    <h3>Titulo</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro fugit veritatis quod nostrum
+                        similique nam est dignissimos inventore sequi, perspiciatis non dolorem earum voluptas accusamus
+                        doloremque necessitatibus ex ullam suscipit!
+                    </p>
+                </div>
+            </div>
         </section>
 
         <section class="features">
             <div class="features-div">
                 <div class="features-div--image">
-                    <img src="icon/delivery.svg" alt="Envío a domicilio">
+                    <img src="icon/delivery-4c2818.svg" alt="Envío a domicilio">
                 </div>
                 <div class="features-div--text">
-                    <h2>Envío a domicilio</h2>
+                    <h3>Envío a domicilio</h3>
                 </div>
             </div>
 
             <div class="features-div">
                 <div class="features-div--image">
-                    <img src="icon/whatsapp.svg" alt="Pedidos por WhatsApp">
+                    <img src="icon/whatsapp-4c2818.svg" alt="Pedidos por WhatsApp">
                 </div>
                 <div class="features-div--text">
-                    <h2>Pedidos por WhatsApp</h2>
+                    <h3>Pedidos por WhatsApp</h3>
                 </div>
             </div>
 
             <div class="features-div">
                 <div class="features-div--image">
-                    <img src="icon/wifi.svg" alt="Wi-Fi gratuito">
+                    <img src="icon/wifi-4c2818.svg" alt="Wi-Fi gratuito">
                 </div>
                 <div class="features-div--text">
-                    <h2>Espacio con Wi-Fi gratuito</h2>
+                    <h3>Espacio con Wi-Fi gratuito</h3>
                 </div>
             </div>
 
             <div class="features-div">
                 <div class="features-div--image">
-                    <img src="icon/promo.svg" alt="Promociones diarias">
+                    <img src="icon/etiqueta-4c2818.svg" alt="Promociones diarias">
                 </div>
                 <div class="features-div--text">
-                    <h2>Promociones todos los días</h2>
+                    <h3>Promociones todos los días</h3>
                 </div>
             </div>
         </section>

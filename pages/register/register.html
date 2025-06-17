@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <!-- Metadatos del documento -->
     <meta charset="UTF-8">
@@ -9,22 +10,22 @@
     <title>Registro</title>
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" tamaños="57x57" href="icon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" tamaños="60x60" href="icon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" tamaños="72x72" href="icon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" tamaños="76x76" href="icon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" tamaños="114x114" href="icon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" tamaños="120x120" href="icon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" tamaños="144x144" href="icon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" tamaños="152x152" href="icon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" tamaños="180x180" href="icon/apple-icon-180x180.png">
-    <link rel="icon" tipo="image/png" tamaños="192x192" href="icon/android-icon-192x192.png">
-    <link rel="icon" tipo="image/png" tamaños="32x32" href="icon/favicon-32x32.png">
-    <link rel="icono" tipo="imagen/png" tamaños="96x96" href="icon/favicon-96x96.png">
-    <link rel="icono" tipo="imagen/png" tamaños="16x16" href="icon/favicon-16x16.png">
-    <link rel="manifiesto" href="icon/manifiesto.json">
+    <link rel="apple-touch-icon" tamaños="57x57" href="/icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" tamaños="60x60" href="/icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" tamaños="72x72" href="/icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" tamaños="76x76" href="/icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" tamaños="114x114" href="/icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" tamaños="120x120" href="/icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" tamaños="144x144" href="/icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" tamaños="152x152" href="/icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" tamaños="180x180" href="/icon/apple-icon-180x180.png">
+    <link rel="icon" tipo="image/png" tamaños="192x192" href="/icon/android-icon-192x192.png">
+    <link rel="icon" tipo="image/png" tamaños="32x32" href="/icon/favicon-32x32.png">
+    <link rel="icono" tipo="imagen/png" tamaños="96x96" href="/icon/favicon-96x96.png">
+    <link rel="icono" tipo="imagen/png" tamaños="16x16" href="/icon/favicon-16x16.png">
+    <link rel="manifiesto" href="/icon/manifiesto.json">
     <meta nombre="msapplication-TileColor" contenido="#f5f6ed">
-    <meta nombre="msapplication-TileImage" contenido="icon/ms-icon-144x144.png">
+    <meta nombre="msapplication-TileImage" contenido="/icon/ms-icon-144x144.png">
     <meta nombre="theme-color" contenido="#f5f6ed">
 
     <!-- Hojas de estilos de Bootstrap -->
@@ -34,7 +35,208 @@
     <!-- Hoja de estilos (Stylesheet) -->
     <link rel="stylesheet" href="register.css">
 </head>
+
 <body>
-    
+    <!-- ===== Encabezado del sitio (Header) ===== -->
+    <header>
+        <div class="header-logo">
+            <a href="/index.html">
+                <img class="logo" src="/img/logo.png" alt="logo de Fran Coffee Makers">
+            </a>
+        </div>
+
+        <div class="header-content">
+            <div>
+                <div class="header-top-bar">
+
+                    <!-- Botón para ingresar o crear cuenta -->
+                    <div class="header-login">
+                        <button class="login-button">
+                            <a href="register.html" class="login-link">Ingresa o Crear una Cuenta</a>
+                        </button>
+                    </div>
+
+                    <!-- Barra de búsqueda -->
+                    <div class="search-bar">
+                        <form action="/search" method="GET">
+                            <input class="search-input" type="text" name="search" placeholder="Buscar productos">
+                            <button class=" search-button" type="submit" name="search">
+                                <img class="search-icon" src="/icon/lupa.svg" alt="Ícono de búsqueda">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="header-nav-bar">
+
+                    <a class="drop-btn" href="/pages/about/about.html">Sobre nosotros</a>
+
+                    <div class="dropdown">
+                        <button class="link, drop-btn">Menú</button>
+
+                        <!-- Menú desplegado -->
+                        <div class="dropdown-content">
+                            <h3>Menú</h3>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="link, drop-btn">Menú</button>
+
+                        <!-- Menú desplegado -->
+                        <div class="dropdown-content">
+                            <h3>Menú</h3>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="link, drop-btn">Menú</button>
+
+                        <!-- Menú desplegado -->
+                        <div class="dropdown-content">
+                            <h3>Menú</h3>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                            <a class="link" href="#">Opción</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-nav">
+
+            </div>
+        </div>
+    </header>
+
+    <section class="container py-4 col-md-6 shadow formulario">
+        <h2 class="text-center">
+            Formulario de Registro
+        </h2>
+
+        <form action="#" method="post" enctype="multipart/form-data">
+            <!-- Nombre -->
+            <div class="mb-3">
+                <label class="form-label" for="name">Nombre</label>
+                <input class="form-control" type="text" name="name" id="name" placeholder="Tu Nombre" required>
+            </div>
+
+            <!-- Apellido -->
+            <div class="mb-3">
+                <label class="form-label" for="surname">Apellido</label>
+                <input class="form-control" type="text" name="surname" id="surname" placeholder="Tu Nombre" required>
+            </div>
+
+            <!-- Correo electronico -->
+            <div class="mb-3">
+                <label class="form-label" for="email">Correo electrónico</label>
+                <input class="form-control" type="email" name="email" id="email" placeholder="Ejemplo@gmail.com"
+                    required>
+            </div>
+
+            <!-- Fecha de Nacimiento -->
+            <div class="mb-3">
+                <label class="form-label" for="birthDate">Fecha de nacimiento</label>
+                <input class="form-control" type="date" name="birthDate" id="birthDate" required>
+            </div>
+
+            <!-- Foto de Perfil -->
+            <div class="mb-3">
+                <label class="form-label" for="profilePicture">Imagen de perfil</label>
+                <input class="form-control" type="file" name="profilePicture" id="profilePicture">
+            </div>
+
+            <!-- Contraseña -->
+            <div class="mb-3">
+                <label class="form-label" for="password">Contraseña</label>
+                <input class="form-control" type="password" name="password" id="password"
+                    placeholder="Minimo 6 caracteres" required minlength="6">
+            </div>
+
+            <!-- Dirección -->
+            <div class="mb-3">
+                <label class="form-label" for="address">Dirección</label>
+                <input class="form-control" type="text" name="address" id="address"
+                    placeholder="Calle Perito Moreno 2463, M5501 Godoy Cruz">
+            </div>
+
+            <!-- Verificacion de "No soy un robot" -->
+            <div class="mb-3">
+                <input class="form-check-input" type="checkbox" name="verification" id="verification" required>
+                <label class="form-check-label" for="verification">No soy un robot</label>
+            </div>
+
+            <!-- Boton de registro -->
+            <div>
+                <button class="btn btn-primary button" type="submit">Registrarse</button>
+            </div>
+        </form>
+    </section>
+
+        <!-- ===== Pie de página (Footer) ===== -->
+    <footer>
+        <section class="footer-content">
+            <div class="social-media">
+
+                <div class="social-media-div">
+                    <h4>Mantente Conectado</h4>
+                </div>
+
+                <div class="social-media-div">
+                    <a href="http://https://www.pedidosya.com.ar/restaurantes/maipu/fran-estacion-torreon-52eea8aa-7105-465d-9544-7cb36e849ead-menu?utm_source=google&utm_medium=organic&utm_campaign=google_reserve_place_order_action"
+                        target="_blank" rel="noopener noreferrer">
+                        <img class="social-media-logo" src="/icon/PedidosYa.svg" alt="Logo de pedidosya">
+                    </a>
+
+                    <a href="https://www.facebook.com/sharer.php?u=https://linktr.ee/francoffeemakers?utm_source=linktree_profile_share&ltsid=efbdd5db-22de-4cdc-adc5-8d7235e8d97a"
+                        target="_blank" rel="noopener noreferrer">
+                        <img class=" social-media-logo" src="/icon/facebook.svg" alt="Logo de Facebook">
+                    </a>
+
+                    <a href="https://www.instagram.com/francoffeemakers/?hl=es" target="_blank"
+                        rel="noopener noreferrer">
+                        <img class=" social-media-logo" src="/icon/instagram.svg" alt="Logo de Instagram">
+                    </a>
+
+                    <a href="https://api.whatsapp.com/send/?text=Check+out+this+Linktree%21+-+https%3A%2F%2Flinktr.ee%2Ffrancoffeemakers%3Futm_source%3Dlinktree_profile_share&type=custom_url&app_absent=0"
+                        target="_blank" rel="noopener noreferrer">
+                        <img class=" social-media-logo" src="/icon/whatsapp.svg" alt="Logo de whatsapp">
+                    </a>
+
+                    <a href="https://www.google.com/maps/search/fran+coffee+makers/@-32.9477052,-68.809111,10z?entry=ttu&g_ep=EgoyMDI1MDYxMS4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank" rel="noopener noreferrer">
+                        <img class=" social-media-logo" src="/icon/maps.svg" alt="Logo de Maps">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <ul class="footer--link-list">
+                    <li><a class="link" href="#">Inicio</a></li>
+                    <li><a class="link" href="#">Sobre nosotros</a></li>
+                    <li><a class="link" href="#">Productos</a></li>
+                    <li><a class="link" href="#">Contactos</a></li>
+                </ul>
+            </div>
+        </section>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
