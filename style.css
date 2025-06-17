@@ -167,6 +167,7 @@ h1 {
 .drop-btn {
     background: none;
     border: none;
+    text-align: center;
     text-decoration: none;
     color: #f5f6ed;
     cursor: pointer;
