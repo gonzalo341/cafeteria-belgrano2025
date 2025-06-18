@@ -2,13 +2,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-.colores {
+/* Paleta de Colores:
+
     color: #131410;
     color: #4c2818;
     color: #a66a2c;
     color: #d5aa72;
     color: #f5f6ed;
-}
+*/
 
 * {
     box-sizing: border-box;
