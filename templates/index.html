@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fran Coffee Makers</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Estilo personalizado -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+
+<body>
+    <!-- ===== Header  ===== -->
+    <header>
+        <div class="header-logo">
+            <a href="/templates/index.html">
+                <img class="logo" src="/img/logo.png" alt="logo de Fran Coffee Makers">
+            </a>
+        </div>
+
+        <div class="header-content">
+            <div>
+                <div class="header-top-bar">
+                    <div class="header-login">
+                        <button class="login-button">
+                            <a href="/templates/register.html" class="login-link">Ingresa o Crear una Cuenta</a>
+                        </button>
+                    </div>
+
+                    <div class="search-bar">
+                        <form action="/search" method="GET">
+                            <input class="search-input" type="text" name="search" placeholder="Buscar productos">
+                            <button class="search-button" type="submit" name="search">
+                                <img class="search-icon" src="/icon/lupa.svg" alt="Ícono de búsqueda">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="header-nav-bar">
+                    <a class="drop-btn" href="/templates/about.html">Sobre nosotros</a>
+
+                    <div class="dropdown">
+                        <button class="link drop-btn">Menú</button>
+                        <div class="dropdown-content">
+                            <!-- menú abreviado -->
+                            <div class="menu">
+                                <div>
+                                    <h3>Cafés calientes</h3>
+                                    <a class="link" href="#">Espresso doble</a>
+                                    <a class="link" href="#">Americano espresso</a>
+                                    <a class="link" href="#">Latte</a>
+                                </div>
+                                <div>
+                                    <h3>Filtrados</h3>
+                                    <a class="link" href="#">Chemex</a>
+                                    <a class="link" href="#">V60</a>
+                                </div>
+                                <div>
+                                    <h3>Deli cafés</h3>
+                                    <a class="link" href="#">Vainilla latte</a>
+                                    <a class="link" href="#">Caramel latte</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="drop-btn" href="/templates/order.html">Simular pedido</a>
+
+                    <div class="dropdown">
+                        <button class="link drop-btn">Sucursales</button>
+                        <div class="dropdown-content">
+                            <h3>Maipú</h3>
+                            <a class="link" href="https://maps.app.goo.gl/vYN8gSZ5meUU6UgJA">Fran Coffee Makers -
+                                Estación Torreón</a>
+                        </div>
+                    </div>
+
+                    <a class="drop-btn" href="#">Servicios</a>
+                    <a class="drop-btn" href="#contactos">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== Main ===== -->
+    <main>
+        <h1>Bienvenidos a Fran Coffee Makers</h1>
+
+        <section id="productos">
+            <h2>Productos Destacados</h2>
+
+            <div class="product-carousel">
+                <div id="carousel--product" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="d-flex justify-content-center gap-3">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/img/cafeIrlandes.jpg" class="card-img-top" alt="Café irlandés">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Café irlandés</h5>
+                                        <p class="card-text">Una mezcla suave de espresso y whisky irlandés, coronada
+                                            con crema batida ligera.</p>
+                                        <a href="/templates/order.html" class="btn">Pedir</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/img/cappuccino.jpg" class="card-img-top" alt="Cappuccino">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Cappuccino</h5>
+                                        <p class="card-text">Clásico italiano con partes iguales de espresso, leche
+                                            vaporizada y espuma tersa en la superficie.</p>
+                                        <a href="/templates/order.html" class="btn">Pedir</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/img/moka.png" class="card-img-top" alt="Moka">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Moka</h5>
+                                        <p class="card-text">Delicioso chocolate caliente combinado con espresso,
+                                            acabado con una pizca de cacao en polvo.</p>
+                                        <a href="/templates/order.html" class="btn">Pedir</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/img/Budinlimon.jpg" class="card-img-top" alt="Budín de limón">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Budín de limón</h5>
+                                        <p class="card-text">Esponjoso, con vibrantes notas cítricas y un glaseado
+                                            ligero que realza su dulzura.</p>
+                                        <a href="/templates/order.html" class="btn">Pedir</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="d-flex justify-content-center gap-3">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/img/medialuna.jpg" class="card-img-top" alt="Medialuna">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Medialuna</h5>
+                                        <p class="card-text">Suaves capas de hojaldre dorado y mantecoso, perfectas para
+                                            acompañar tu café matutino.</p>
+                                        <a href="/templates/order.html" class="btn">Pedir</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/img/tortarogel.jpg" class="card-img-top" alt="Porción de torta">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Porción de torta</h5>
+                                        <p class="card-text">Selección del día: muestra nuestro bizcocho húmedo y
+                                            casero, ideal para un antojo dulce.</p>
+                                        <a href="/templates/order.html" class="btn">Pedir</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/img/frapuccino.jpg" class="card-img-top" alt="Café Frappe">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Café Frappe</h5>
+                                        <p class="card-text">Café frío batido con hielo y leche, refrescante y cremoso,
+                                            perfecto para el verano.</p>
+                                        <a href="/templates/order.html" class="btn">Pedir</a>
+                                    </div>
+                                </div>
+                                <div class="card" style="width: 18rem;">
+                                    <img src="/img/brownie.jpg" class="card-img-top" alt="Brownies">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Brownies</h5>
+                                        <p class="card-text">Trozos de chocolate intenso y textura fudgy, el equilibrio
+                                            ideal entre dulce y amargo.</p>
+                                        <a href="/templates/order.html" class="btn">Pedir</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel--product"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel--product"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="ofertas-testimonios">
+            <h2>Ofertas Especiales y Testimonios</h2>
+            <div class="offers">
+                <div class="offers--top-container">
+                    <div class="offers--top-left-div">
+                        <h3>Ofertas que te invitan a volver</h3>
+                        <p>Disfrutá nuestros <strong>Combos Fran</strong>, pensados para cada momento del día...</p>
+                        <a href="https://www.francoffeemakers.com.ar/" class="btn">Ver Menú Completo</a>
+                    </div>
+
+                    <div class="offers--top-right-div">
+                        <div id="carousel--offers" class="carousel slide">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="/img/comida1.jpg" class="d-block w-100 food-img" alt="comida">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="/img/comida2.jpg" class="d-block w-100 food-img" alt="comida">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="/img/comida3.jpg" class="d-block w-100 food-img" alt="comida">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev offers-button-prev" type="button"
+                                data-bs-target="#carousel--offers" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </button>
+                            <button class="carousel-control-next offers-button-next" type="button"
+                                data-bs-target="#carousel--offers" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="offers--down-container">
+                    <div class="offers--down-left-div">
+                        <h3>Recomendaciones que valen oro</h3>
+                        <p>"Salimos satisfechos y muy contentos."</p>
+                        <p>"Muy buena comida, el personal es amable."</p>
+                    </div>
+
+                    <div class="offers--down-center-div">
+                        <div id="carousel--offers--down-center-div" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="/img/Local0.jpg" class="d-block w-100 local-img" alt="imagen del local">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="/img/Local1.jpg" class="d-block w-100 local-img" alt="imagen del local">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev offers-button-prev" type="button"
+                                data-bs-target="#carousel--offers--down-center-div" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </button>
+                            <button class="carousel-control-next offers-button-next" type="button"
+                                data-bs-target="#carousel--offers--down-center-div" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="offers--down-right-div">
+                        <h3>Momentos memorables en cada visita</h3>
+                        <p>"Excelente atención... Exquisito café..."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beneficios">
+            <h2>Por Qué Elegirnos</h2>
+            <div class="features">
+                <div class="features-div">
+                    <div class="features-div--image"><img src="/icon/delivery-4c2818.svg" alt="Envío a domicilio">
+                    </div>
+                    <div class="features-div--text">
+                        <h3>Envío a domicilio</h3>
+                    </div>
+                </div>
+
+                <div class="features-div">
+                    <div class="features-div--image"><img src="/icon/whatsapp-4c2818.svg" alt="Pedidos por WhatsApp">
+                    </div>
+                    <div class="features-div--text">
+                        <h3>Pedidos por WhatsApp</h3>
+                    </div>
+                </div>
+
+                <div class="features-div">
+                    <div class="features-div--image"><img src="/icon/wifi-4c2818.svg" alt="Wi-Fi gratuito"></div>
+                    <div class="features-div--text">
+                        <h3>Espacio con Wi-Fi gratuito</h3>
+                    </div>
+                </div>
+
+                <div class="features-div">
+                    <div class="features-div--image"><img src="/icon/etiqueta-4c2818.svg" alt="Promociones diarias">
+                    </div>
+                    <div class="features-div--text">
+                        <h3>Promociones todos los días</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== Pie de página (Footer) ===== -->
+    <footer>
+        <section class="footer-content">
+            <div class="social-media">
+                <div class="social-media-div" id="contactos">
+                    <h4>Mantente Conectado</h4>
+                </div>
+                <div class="social-media-div">
+                    <a href="https://www.pedidosya.com.ar/restaurantes/maipu/fran-estacion-torreon-52eea8aa-7105-465d-9544-7cb36e849ead-menu?utm_source=google&utm_medium=organic&utm_campaign=google_reserve_place_order_action"
+                        target="_blank" rel="noopener noreferrer">
+                        <img class="social-media-logo" src="/icon/PedidosYa.svg" alt="Logo de pedidosya">
+                    </a>
+
+                    <a href="https://www.facebook.com/sharer.php?u=https://linktr.ee/francoffeemakers?utm_source=linktree_profile_share&ltsid=efbdd5db-22de-4cdc-adc5-8d7235e8d97a"
+                        target="_blank" rel="noopener noreferrer">
+                        <img class=" social-media-logo" src="/icon/facebook.svg" alt="Logo de Facebook">
+                    </a>
+
+                    <a href="https://www.instagram.com/francoffeemakers/?hl=es" target="_blank"
+                        rel="noopener noreferrer">
+                        <img class=" social-media-logo" src="/icon/instagram.svg" alt="Logo de Instagram">
+                    </a>
+
+                    <a href="https://api.whatsapp.com/send/?text=Check+out+this+Linktree%21+-+https%3A%2F%2Flinktr.ee%2Ffrancoffeemakers%3Futm_source%3Dlinktree_profile_share&type=custom_url&app_absent=0"
+                        target="_blank" rel="noopener noreferrer">
+                        <img class=" social-media-logo" src="/icon/whatsapp.svg" alt="Logo de whatsapp">
+                    </a>
+
+                    <a href="https://www.google.com/maps/search/fran+coffee+makers/@-32.9477052,-68.809111,10z?entry=ttu&g_ep=EgoyMDI1MDYxMS4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank" rel="noopener noreferrer">
+                        <img class=" social-media-logo" src="/icon/maps.svg" alt="Logo de Maps">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h3>Nosotros</h3>
+                <ul class="footer--link-list">
+                    <li><a class="link" href="#">Nuestra Historia</a></li>
+                    <li><a class="link" href="#">Trabaja con Nosotros</a></li>
+                    <li><a class="link" href="#">Avisos Legales</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Atención al Cliente</h3>
+                <ul class="footer--link-list">
+                    <li><a class="link" href="#">Preguntas Frecuentes</a></li>
+                    <li><a class="link" href="#">Envíos y Devoluciones</a></li>
+                    <li><a class="link" href="#">Contáctanos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h3>Información</h3>
+                <ul class="footer--link-list">
+                    <li><a class="link" href="#">Términos y Condiciones</a></li>
+                    <li><a class="link" href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+        </section>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS del proyecto -->
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
