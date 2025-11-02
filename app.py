@@ -1,178 +1,162 @@
-import os, json, base64, logging, mysql.connector
+import os
+import logging
 from datetime import datetime
-from flask import Flask, request, jsonify, send_from_directory
+from pathlib import Path
+import base64
+
+import mysql.connector
+from mysql.connector import Error
+from flask import Flask, request, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash
 
-# ===== Config =====
 DB_CONFIG = {
-    "host": "127.0.0.1",
-    "port": 3306,
-    "user": "root",
-    "password": "",
-    "database": "cafeteria_bd"
+    "host": os.environ.get("DB_HOST", "127.0.0.1"),
+    "port": int(os.environ.get("DB_PORT", 3306)),
+    "user": os.environ.get("DB_USER", "root"),
+    "password": os.environ.get("DB_PASSWORD", ""),
+    "database": os.environ.get("DB_NAME", "cafeteria_bd"),
 }
 
-UPLOAD_FOLDER = os.path.join("static", "uploads")
-JSON_FOLDER = os.path.join("static", "json")
-REQUEST_JSON_PATH = os.path.join(JSON_FOLDER, "request.json")
+BASE_DIR = Path(__file__).resolve().parent
+UPLOAD_FOLDER = BASE_DIR / "static" / "uploads"
+UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)
+PRODUCTION = os.environ.get("PRODUCTION", "False").lower() in ("1", "true", "yes")
+ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".webp"}
 
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-os.makedirs(JSON_FOLDER, exist_ok=True)
-
-# ===== Logging =====
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-# ===== App =====
-app = Flask(__name__)
-
-# CORS: permitir el origen del Live Server (127.0.0.1:5500 y localhost:5500)
+app = Flask(__name__, static_folder=str(BASE_DIR / "static"), template_folder=str(BASE_DIR / "templates"))
 CORS(app, resources={r"/*": {"origins": ["http://127.0.0.1:5500", "http://localhost:5500"]}})
 
-# ===== Helpers =====
 def get_db_connection():
-    return mysql.connector.connect(
-        host=DB_CONFIG["host"],
-        port=DB_CONFIG["port"],
-        user=DB_CONFIG["user"],
-        password=DB_CONFIG["password"],
-        database=DB_CONFIG["database"],
-        autocommit=False
-    )
-
-def save_request_json(data):
     try:
-        with open(REQUEST_JSON_PATH, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        logger.info(f"Wrote request JSON to {REQUEST_JSON_PATH}")
-    except Exception as e:
-        logger.error(f"Failed to write request JSON: {e}")
+        conn = mysql.connector.connect(
+            host=DB_CONFIG["host"],
+            port=DB_CONFIG["port"],
+            user=DB_CONFIG["user"],
+            password=DB_CONFIG["password"],
+            database=DB_CONFIG["database"],
+            autocommit=False,
+        )
+        return conn
+    except Error as e:
+        logger.error("DB connection error: %s", e)
+        raise
 
-def save_profile_picture(pic_obj):
-    """
-    pic_obj expected: { "filename": "name.jpg", "data": "<base64string>" }
-    Returns the public path to saved file (e.g. '/static/uploads/uuid-name.jpg') or None
-    """
-    if not pic_obj:
+def allowed_file(filename: str) -> bool:
+    return Path(filename).suffix.lower() in ALLOWED_EXTENSIONS
+
+def save_file_storage(file_storage):
+    if not file_storage or file_storage.filename == "":
         return None
-    fname = secure_filename(pic_obj.get("filename", "upload"))
-    b64 = pic_obj.get("data")
+    filename = secure_filename(file_storage.filename)
+    if not allowed_file(filename):
+        return None
+    timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S%f")
+    name, ext = os.path.splitext(filename)
+    new_name = f"{name}_{timestamp}{ext}"
+    save_path = UPLOAD_FOLDER / new_name
+    file_storage.save(str(save_path))
+    return f"/static/uploads/{new_name}"
+
+def save_profile_picture_from_base64(obj):
+    if not obj:
+        return None
+    filename = secure_filename(obj.get("filename", "upload.jpg"))
+    if not allowed_file(filename):
+        return None
+    b64 = obj.get("data")
     if not b64:
         return None
-    # crear nombre único
     timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S%f")
-    name, ext = os.path.splitext(fname)
-    if ext == "":
+    name, ext = os.path.splitext(filename)
+    if not ext:
         ext = ".jpg"
-    new_fname = f"{name}_{timestamp}{ext}"
-    save_path = os.path.join(UPLOAD_FOLDER, new_fname)
-    try:
-        with open(save_path, "wb") as f:
-            f.write(base64.b64decode(b64))
-        public_path = f"/static/uploads/{new_fname}"
-        logger.info(f"Saved image to {save_path}")
-        return public_path
-    except Exception as e:
-        logger.error(f"Error saving image file: {e}")
-        return None
+    new_name = f"{name}_{timestamp}{ext}"
+    save_path = UPLOAD_FOLDER / new_name
+    with open(save_path, "wb") as f:
+        f.write(base64.b64decode(b64))
+    return f"/static/uploads/{new_name}"
 
-# ===== Request logging =====
-@app.before_request
-def log_request_info():
-    try:
-        logger.info(f"{request.remote_addr} - {request.method} {request.path}")
-    except Exception:
-        pass
+@app.route("/", methods=["GET"])
+def index():
+    return render_template("register.html")
 
-# ===== Routes =====
+@app.route("/register", methods=["GET"])
+def register_form():
+    return render_template("register.html")
+
 @app.route("/register", methods=["POST"])
 def register():
     try:
-        data = request.get_json(force=True)
-        if data is None:
-            return jsonify({"error": "No JSON recibido"}), 400
+        if request.content_type and request.content_type.startswith("application/json"):
+            data = request.get_json(force=True)
+            if data is None:
+                return jsonify({"error": "JSON inválido"}), 400
+            name = data.get("name")
+            surname = data.get("surname")
+            email = data.get("email")
+            birth_date = data.get("birthDate") or None
+            password = data.get("password")
+            address = data.get("address")
+            profile_picture_obj = data.get("profilePicture")
+            profile_picture_path = save_profile_picture_from_base64(profile_picture_obj) if profile_picture_obj else None
+        else:
+            form = request.form
+            name = form.get("name")
+            surname = form.get("surname")
+            email = form.get("email")
+            birth_date = form.get("birthDate") or None
+            password = form.get("password")
+            address = form.get("address")
+            file = request.files.get("profilePicture") or None
+            profile_picture_path = save_file_storage(file) if file else None
 
-        # Guardar copia del request JSON
-        save_request_json(data)
+        if not name or not surname or not email or not password:
+            return jsonify({"error": "Campos obligatorios faltantes (name, surname, email, password)."}), 400
 
-        name = data.get("name")
-        surname = data.get("surname")
-        email = data.get("email")
-        birthDate = data.get("birthDate")  # puede ser None o ""
-        password = data.get("password")
-        address = data.get("address")
-        profilePictureObj = data.get("profilePicture")
+        hashed_password = generate_password_hash(password)
 
-        # Guardar la imagen (si se sube)
-        profile_picture_path = save_profile_picture(profilePictureObj) if profilePictureObj else None
-
-        # Insertar en DB
         conn = get_db_connection()
         cursor = conn.cursor()
         insert_sql = """
             INSERT INTO users
-            (name, surname, email, birth_date, profile_picture, password, address)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            (name, surname, email, birth_date, profile_picture, password, address, created_at)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """
-        cursor.execute(insert_sql, (
-            name,
-            surname,
-            email,
-            birthDate if birthDate else None,
-            profile_picture_path,
-            password,
-            address
-        ))
+        created_at = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+        params = (name, surname, email, birth_date, profile_picture_path, hashed_password, address, created_at)
+        cursor.execute(insert_sql, params)
         conn.commit()
         cursor.close()
         conn.close()
+        logger.info("Usuario insertado: %s %s (%s)", name, surname, email)
+        return jsonify({"message": "Usuario registrado exitosamente."}), 201
 
-        logger.info(f"Usuario insertado: {email} - {name} {surname}")
-        return jsonify({"message": "Usuario registrado exitosamente"}), 201
+    except mysql.connector.IntegrityError as ie:
+        logger.exception("IntegrityError en /register")
+        return jsonify({"error": "Error de integridad en la base de datos.", "details": str(ie)}), 400
 
     except Exception as e:
         logger.exception("Error en /register")
-        return jsonify({"error": "Error al procesar la solicitud", "details": str(e)}), 500
+        return jsonify({"error": "Error interno al procesar la solicitud.", "details": str(e)}), 500
 
-@app.route("/users", methods=["GET"])
-def list_users():
-    try:
-        conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT id, name, surname, email, birth_date, profile_picture, address FROM users")
-        rows = cursor.fetchall()
-        cursor.close()
-        conn.close()
-        return jsonify({"users": rows}), 200
-    except Exception as e:
-        logger.exception("Error en /users")
-        return jsonify({"error": str(e)}), 500
-
-# Ruta opcional para servir archivos subidos
 @app.route("/static/uploads/<path:filename>")
 def uploaded_file(filename):
-    return send_from_directory(UPLOAD_FOLDER, filename)
-
-# ===== Probar conexión al iniciar =====
-def test_db_connection():
-    try:
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute("SELECT 1")
-        _ = cursor.fetchone()
-        cursor.close()
-        conn.close()
-        logger.info("✅ Conexión exitosa a la base de datos")
-    except Exception as e:
-        logger.error(f"❌ Error de conexión a DB: {e}")
+    return send_from_directory(str(UPLOAD_FOLDER), filename)
 
 if __name__ == "__main__":
-    test_db_connection()
-    logger.info("Iniciando servidor en modo debug (sin Waitress) en http://127.0.0.1:5050")
-    # En desarrollo usar app.run para facilitar debug; en producción podés volver a waitress
-    app.run(host="127.0.0.1", port=5050, debug=True)
-
+    try:
+        conn_test = get_db_connection()
+        conn_test.close()
+        logger.info("Conexión a DB OK")
+    except Exception as e:
+        logger.error("No se pudo conectar a la DB: %s", e)
+    if PRODUCTION:
+        from waitress import serve
+        serve(app, host="0.0.0.0", port=5050)
+    else:
+        app.run(host="127.0.0.1", port=5050, debug=True)

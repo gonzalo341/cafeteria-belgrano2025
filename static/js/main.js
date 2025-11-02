@@ -1,73 +1,32 @@
+// --- Regisrto en la base de datos ---
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("registerForm");
     const mensajeDiv = document.getElementById("mensajeCliente");
-
-    async function fileToBase64(file) {
-        return new Promise((resolve, reject) => {
-            if (!file) return resolve(null);
-            const reader = new FileReader();
-            reader.onload = () => {
-                const result = reader.result;
-                const base64 = result.split(",")[1];
-                resolve(base64);
-            };
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-        });
-    }
 
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
         mensajeDiv.innerHTML = "";
 
         try {
-            const name = document.getElementById("name").value;
-            const surname = document.getElementById("surname").value;
-            const email = document.getElementById("email").value;
-            const birthDate = document.getElementById("birthDate").value;
-            const password = document.getElementById("password").value;
-            const address = document.getElementById("address").value;
-            const fileInput = document.getElementById("profilePicture");
-            const file = fileInput.files && fileInput.files[0];
-
-            const profilePictureBase64 = file ? await fileToBase64(file) : null;
-            const profilePicture = file
-                ? { filename: file.name, data: profilePictureBase64 }
-                : null;
-
-            const payload = {
-                name,
-                surname,
-                email,
-                birthDate,
-                password,
-                address,
-                profilePicture,
-            };
-
-            // URL completa del backend Flask (puerto 5050)
+            const formData = new FormData(form);
             const BACKEND_URL = "http://127.0.0.1:5050/register";
 
             const resp = await fetch(BACKEND_URL, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
+                body: formData,
             });
 
             const result = await resp.json();
 
             if (resp.ok) {
-                mensajeDiv.innerHTML =
-                    `<div class="alert alert-success" role="alert">${result.message}</div>`;
+                mensajeDiv.innerHTML = `<div class="alert alert-success" role="alert">${result.message}</div>`;
                 form.reset();
             } else {
-                mensajeDiv.innerHTML =
-                    `<div class="alert alert-danger" role="alert">${result.error || result.message || 'Error'}</div>`;
+                mensajeDiv.innerHTML = `<div class="alert alert-danger" role="alert">${result.error || result.message || 'Error'}</div>`;
             }
         } catch (err) {
             console.error(err);
-            mensajeDiv.innerHTML =
-                `<div class="alert alert-danger" role="alert">Error en el cliente: ${err.message}</div>`;
+            mensajeDiv.innerHTML = `<div class="alert alert-danger" role="alert">Error en el cliente: ${err.message}</div>`;
         }
     });
 });
