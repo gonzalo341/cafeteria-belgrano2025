@@ -1,78 +1,9 @@
-/* ========== Fuentes Importadas ========== */
+/* 1) Importamos los estilos base */
+@import url("base.css");
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+/* ========== Estilos específicos del Home (index) ========== */
 
-/* Paleta de Colores:
-
-    color: #131410;
-    color: #4c2818;
-    color: #a66a2c;
-    color: #d5aa72;
-    color: #f5f6ed;
-*/
-
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    background-color: #d5aa72;
-    color: #4c2818;
-    width: 100%;
-    height: 100%;
-    font-family: Montserrat;
-    font-weight: 500;
-    line-height: 1.4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1;
-}
-
-header,
-footer {
-    background-color: #4c2818;
-    color: #d5aa72;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 0.15fr 1fr;
-    grid-template-rows: auto;
-}
-
-h1 {
-    font-family: Montserrat;
-    font-size: 4rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 1rem;
-}
-
-section h2 {
-    height: fit-content;
-    padding: 1rem 0;
-    font-size: 2rem;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.link {
-    color: #d5aa72;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.link:hover {
-    text-decoration: underline;
-}
-
-/* ========== Header ========== */
-
+/* Header específico */
 .header-logo {
     grid-column: 1;
     align-content: center;
@@ -94,8 +25,7 @@ section h2 {
     justify-content: flex-end;
 }
 
-/* ========== Header: Inicio de sesión ========== */
-
+/* Header: Inicio de sesión */
 .header-login {
     align-content: center;
     padding: 1rem;
@@ -114,12 +44,9 @@ section h2 {
     color: #4c2818;
 }
 
-.login-link, .login-link:hover {
+.login-link {
     color: #4c2818;
     font-weight: 700;
-}
-
-.login-link {
     text-decoration: none;
 }
 
@@ -131,8 +58,7 @@ section h2 {
     transform: scale(1.1);
 }
 
-/* ========== Header: Barra de busqueda ========== */
-
+/* Header: Barra de busqueda */
 .search-bar {
     align-content: center;
     padding: 1rem;
@@ -160,8 +86,7 @@ section h2 {
     height: 2rem;
 }
 
-/* ========== Header: Menú desplegable ========== */
-
+/* Header: Menú desplegable */
 .header-nav-bar {
     display: flex;
     flex-direction: row;
@@ -239,15 +164,13 @@ section h2 {
     background-color: #f5f6ed;
 }
 
-/* ========== Main: section ========== */
-
+/* Secciones principales */
 section {
     width: 60%;
     margin: 2rem auto;
 }
 
-/* ========== Main: section-product-carousel ========== */
-
+/* Carrusel y Cards */
 .card {
     background-color: #f5f6ed;
     border-radius: 15px;
@@ -296,7 +219,7 @@ section {
     box-shadow: 0 8px 8px rgba(76, 40, 24, 0.2);
 }
 
-/* ========== Main: section-offers ========== */
+/* Ofertas */
 .offers {
     display: grid;
     grid-template-rows: repeat(2, 1fr);
@@ -326,7 +249,6 @@ section {
 
 .offers--down-left-div, .offers--down-right-div {
     background-color: #4c2818;
-
 }
 
 .offers--down-left-div h3, .offers--down-right-div h3{
@@ -355,7 +277,7 @@ section {
     background: none;
 }
 
-/* ========== Main: section-features ========== */
+/* Features */
 .features {
     background-color: #4c2818;
     height: auto;
@@ -397,8 +319,7 @@ section {
     margin: 0;
 }
 
-/* ========== Footer ========== */
-
+/* Footer específico */
 .footer-content {
     grid-column: 1/3;
     display: flex;
@@ -409,8 +330,6 @@ section {
     margin: auto;
     padding: 1rem 0;
 }
-
-/* ========== Footer -- Redes sociales ========== */
 
 .social-media {
     text-align: center;
@@ -441,8 +360,6 @@ section {
     transform: scale(1.3);
 }
 
-/* ========== Footer -- links ========== */
-
 .footer-links {
     font-size: 1rem;
     width: 12rem;
@@ -453,11 +370,11 @@ section {
     list-style: none;
 }
 
+/* Responsive */
 @media (max-width: 1200px) {
     section {
         width: 90%;
     }
-
     .features {
         grid-template-columns: repeat(2, 1fr);
     }

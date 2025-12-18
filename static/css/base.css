@@ -1,0 +1,68 @@
+/* ========== base.css: Estilos comunes para todo el sitio (Unificación de *, html, body, headers y footers) ========== */
+
+/* Fuentes Importadas */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Reset básico */
+* {
+    box-sizing: border-box;
+}
+
+/* 1) Unificación de selectores *, html y body en body */
+body {
+    background-color: #d5aa72; /* Color de fondo principal */
+    color: #4c2818; /* Color de texto principal */
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* Esto asegura que el footer se mantenga al final */
+}
+
+/* Encabezado y Pie de página comunes */
+header,
+footer {
+    background-color: #4c2818;
+    color: #d5aa72;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.15fr 1fr;
+    grid-template-rows: auto;
+}
+
+/* Títulos y enlaces comunes */
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 1rem;
+}
+
+section h2 {
+    height: fit-content;
+    padding: 1rem 0;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.link {
+    color: #d5aa72;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
