@@ -1,45 +1,39 @@
 import mysql.connector
 from mysql.connector import Error, errorcode, IntegrityError
-import setup as setup  # Importamos tu nuevo setup para usar sus funciones
+import setup as setup  # Importamos setup.py para autocompletar la BD si falta
 
-# Mensajes de error centralizados para usar en app.py
+# ----------------------------------------------
+# Mensajes constantes para mantener el orden
+# ----------------------------------------------
 MENSAJE_ERROR_CONEXION = "Error: No se pudo conectar con la base de datos."
 MENSAJE_ERROR_UNIQUE = "El correo electrónico ya se encuentra registrado."
 
-def obtener_conexion_bd():
-    """
-    Intenta establecer conexión con la base de datos.
-    Si la base de datos no existe, ejecuta el setup automáticamente.
-    """
-    config = setup.SERVER_CONFIG.copy()
-    config["database"] = setup.DB_NAME
+def obtener_conexion_bd():                  # Intenta conectar a MySQL. Si falla porque la BD no existe, llama a setup.py para crearla.
+    config = setup.SERVER_CONFIG.copy()     # Copiamos la config del servidor (user, password, host)
+    config["database"] = setup.DB_NAME      # Agregamos el nombre de la BD a la config
     
     try:
-        # Intentar la conexión normal
-        conn = mysql.connector.connect(**config)
+        conn = mysql.connector.connect(**config)    # Intento normal de conexión
         return conn
         
     except Error as err:
-        # Si el error es que la base de datos no existe (Error 1049)
+        # Error 1049: la base de datos no existe. 
+        # Si pasa esto, ejecutamos el script de instalación automática.
         if err.errno == errorcode.ER_BAD_DB_ERROR:
             print(f"⚠️ La base de datos '{setup.DB_NAME}' no existe. Intentando crearla...")
             
-            # Llamamos a la función de tu script de setup
-            if setup.inicializar_proyecto():
+            # Llamamos a la función de setup.py que crea la BD y las tablas
+            if setup.inicializar_bd():
                 try:
-                    # Reintentar la conexión después de crear la BD
+                    # Reintentamos conectar ahora que la BD existe
                     conn = mysql.connector.connect(**config)
                     print("✅ Conexión establecida tras la creación automática de la BD.")
                     return conn
                 except Error as e:
-                    print(f"❌ Error al reconectar después del setup: {e}")
-            else:
-                print("❌ No se pudo inicializar la base de datos automáticamente.")
+                    print(f"❌ Error al reconectar: {e}")
+            else:   # Otros errores (contraseña mal, servidor apagado, etc.)
+                print("❌ Falló la autoinstalación.")
         
-        else:
-            # Otros errores (contraseña mal, servidor apagado, etc.)
-            print(f"❌ Error de base de datos: {err}")
-            
         return None
 
 # Definimos qué puede importar app.py desde aquí

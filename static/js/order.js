@@ -1,5 +1,7 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Base de datos local de productos (Array de objetos)
+document.addEventListener("DOMContentLoaded", () => {   // Esto asegura que el código se ejecute solo cuando el HTML ya esté cargado.
+    // ----------------------------------------------
+    //  Lista de productos (datos)
+    // ----------------------------------------------
     const products = [
         { id: 1, name: "Espresso", price: 3000 },
         { id: 2, name: "Cappuccino", price: 4200 },
@@ -11,59 +13,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const productSelect = document.getElementById("productSelect");
     
-    // Verificamos si el elemento existe antes de continuar para evitar errores en otras páginas
-    if (!productSelect) return;
+    if (!productSelect) return;             // Verificamos si el elemento existe antes de continuar para evitar errores
 
-    // 2. Carga dinámica de productos en el menú desplegable (DOM Manipulation)
-    products.forEach(p => {
-        const opt = document.createElement("option");
+    products.forEach(p => {                 // Recorremos el array de productos para crear las opciones del menú desplegable (<select>).
+        const opt = document.createElement("option");   // Creamos un nuevo elemento HTML de tipo <option>.
         opt.value = p.id;
         opt.textContent = `${p.name} - $${p.price}`;
-        productSelect.appendChild(opt);
+        productSelect.appendChild(opt);     // Agregamos la opción creada dentro del <select> en el HTML real.
     });
 
-    // Referencias a los elementos de la interfaz
+    // ----------------------------------------------
+    //  Referencias a los elementos de la interfaz
+    // ----------------------------------------------
     const quantityInput = document.getElementById("quantity");
     const totalPriceSpan = document.getElementById("totalPrice");
     const extrasCheckboxes = document.querySelectorAll(".extra-checkbox");
     const simulateBtn = document.getElementById("simulateBtn");
     const orderSummary = document.getElementById("orderSummary");
 
-    // 3. Función lógica para calcular el precio total
+    // ----------------------------------------------
+    //      Función para calcular el precio total
+    // ----------------------------------------------
     function calcularTotal() {
+        // ----------------------------------------------
+        // Obtener precio base del producto seleccionado
+        // ----------------------------------------------
         const productId = parseInt(productSelect.value);
-        const product = products.find(p => p.id === productId);
-        const base = product ? product.price : 0;
+        const product = products.find(p => p.id === productId);     // Buscamos en el array 'products' el objeto que tenga ese ID.
+        const base = product ? product.price : 0;                   // Si encontramos el producto usamos su precio, si no, es 0.
 
-        // Obtener multiplicador de tamaño (Radio Buttons)
-        const sizeRadio = document.querySelector('input[name="size"]:checked');
-        const sizeMult = sizeRadio ? parseFloat(sizeRadio.value) : 1.0;
+        // ----------------------------------------------
+        //      Obtener multiplicador de tamaño
+        // ----------------------------------------------
+        const sizeRadio = document.querySelector('input[name="size"]:checked'); // Buscamos cuál radio button está marcado (:checked)
+        const sizeMult = sizeRadio ? parseFloat(sizeRadio.value) : 1.0; // Si hay uno seleccionado, usamos su valor (ej: 1.3), si no, el valor por defecto es 1.0.
 
-        // Sumar valores de los extras seleccionados (Checkboxes)
+        // ----------------------------------------------
+        //          Sumar extras seleccionados
+        // ----------------------------------------------
         let extrasSum = 0;
-        extrasCheckboxes.forEach(cb => {
+        extrasCheckboxes.forEach(cb => {    // Si el checkbox está marcado (.checked es true)
             if (cb.checked) extrasSum += parseFloat(cb.dataset.price || 0);
         });
 
-        // Validar cantidad (mínimo 1)
-        const qty = Math.max(1, parseInt(quantityInput.value) || 1);
-
-        // Fórmula de negocio: (Base * Tamaño + Extras) * Cantidad
-        return Math.round((base * sizeMult + extrasSum) * qty);
+        // ----------------------------------------------
+        //              Validar cantidad
+        // ----------------------------------------------
+        const qty = Math.max(1, parseInt(quantityInput.value) || 1);    // Leemos el input de cantidad. Si está vacío o es inválido, asumimos 1.
+                                                                        // Math.max(1, ...) asegura que nunca sea menor a 1.
+        // ----------------------------------------------
+        //          Aplicar la Fórmula Matemática
+        // ----------------------------------------------
+        return Math.round((base * sizeMult + extrasSum) * qty);         // Math.round redondea el resultado para que no queden decimales raros.
     }
 
-    // 4. Función para actualizar el texto en el HTML
+    // ----------------------------------------------
+    //  Función para actualizar el texto en el HTML
+    // ----------------------------------------------
     function actualizarInterfaz() {
         totalPriceSpan.textContent = `$${calcularTotal()}`;
     }
 
-    // 5. Asignación de Event Listeners (Reactividad)
     productSelect.addEventListener("change", actualizarInterfaz);
     quantityInput.addEventListener("input", actualizarInterfaz);
     document.querySelectorAll('input[name="size"]').forEach(r => r.addEventListener("change", actualizarInterfaz));
     extrasCheckboxes.forEach(cb => cb.addEventListener("change", actualizarInterfaz));
 
-    // 6. Manejo del botón final de simulación
     simulateBtn.addEventListener("click", () => {
         const total = calcularTotal();
         const product = products.find(p => p.id === parseInt(productSelect.value));
@@ -78,6 +93,5 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     });
 
-    // Inicializar el precio al cargar la página
-    actualizarInterfaz();
+    actualizarInterfaz();               // Inicializar al cargar
 });

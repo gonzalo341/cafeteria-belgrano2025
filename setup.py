@@ -1,11 +1,13 @@
 import mysql.connector, sys
 from mysql.connector import errorcode
 
-# --- CONFIGURACIÓN ---
+# ----------------------------------------------
+#               Datos de conexión
+# ----------------------------------------------
 SERVER_CONFIG = {
     "host": "localhost",
     "user": "root",
-    "password": "",  # Cambiar si tienes contraseña en XAMPP/WAMP
+    "password": "",     # Cambiar si tienes contraseña en XAMPP/WAMP
     "port": 3306
 }
 
@@ -24,43 +26,40 @@ CREATE TABLE IF NOT EXISTS users (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 """
 
-def inicializar_proyecto():
-    """
-    Crea la base de datos y las tablas necesarias con manejo de errores avanzado.
-    """
+def inicializar_bd():   # Crea la base de datos y las tablas necesarias con manejo de errores avanzado.
     conexion = None
-    try:
-        # Intentar conectar al servidor MySQL
+    
+    try:                # Intentar conectar al servidor MySQL
         print(f"Conectando al servidor MySQL en {SERVER_CONFIG['host']}...")
         conexion = mysql.connector.connect(**SERVER_CONFIG)
         cursor = conexion.cursor()
-
-        # Intentar crear la base de datos
+        
+        # ----------------------------------------------
+        #           Crear la la base de datos
+        # ----------------------------------------------
         try:
-            cursor.execute(
-                f"CREATE DATABASE IF NOT EXISTS {DB_NAME} DEFAULT CHARACTER SET 'utf8'"
-            )
+            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME} DEFAULT CHARACTER SET 'utf8'")
+            
             print(f"✅ Base de datos '{DB_NAME}' lista.")
         except mysql.connector.Error as err:
             print(f"❌ Error al crear la base de datos: {err}")
-            sys.exit(1)
+            sys.exit(1)                 # Finaliza el programa indicando que ocurrió un error
 
-        # Seleccionar la base de datos
-        conexion.database = DB_NAME
-
-        # Crear la tabla de usuarios
+        conexion.database = DB_NAME     # Seleccionar la base de datos
+        
+        # ----------------------------------------------
+        #           Crear la tabla de usuarios
+        # ----------------------------------------------
         try:
             cursor.execute(TABLA_USERS)
             print("✅ Tabla 'users' verificada/creada exitosamente.")
         except mysql.connector.Error as err:
             print(f"❌ Error al crear la tabla: {err}")
-        
-        cursor.close()
+
         print("\n✅ Inicialización completada con éxito.")
         return True
 
-    except mysql.connector.Error as err:
-        # Manejo de errores específicos de conexión
+    except mysql.connector.Error as err:    # Manejo de errores específicos de conexión
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print("❌ Error: Usuario o contraseña de MySQL incorrectos.")
         elif err.errno == errorcode.ER_BAD_DB_ERROR:
@@ -69,10 +68,12 @@ def inicializar_proyecto():
             print(f"❌ Error crítico de conexión: {err}")
         return False
     
-    finally:
-        # Aseguramos que la conexión se cierre siempre
-        if conexion and conexion.is_connected():
-            conexion.close()
+    finally:                            # Aseguramos que la conexión se cierre siempre
+        try:
+            cursor.close()
+        except:
+            pass
+        conexion.close()
 
-if __name__ == "__main__":
-    inicializar_proyecto()
+if __name__ == "__main__":              # Ejecutar al importar
+    inicializar_bd()
